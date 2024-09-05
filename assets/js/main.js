@@ -2,27 +2,24 @@
 const projects = [
     {
         id: 'project1',
-        title: 'Machine Learning Classification Project',
+        title: 'Student exam performance prediction',
         date: 'May 1, 2023',
-        image: 'assets/images/project1.jpeg',
         description: 'A machine learning project focusing on classification algorithms.',
         content: `...`, // Full content here
         github: 'https://github.com/yourusername/classification-project'
     },
     {
         id: 'project2',
-        title: 'Data Visualization Dashboard',
+        title: 'IPL Data analysis',
         date: 'June 15, 2023',
-        image: 'assets/images/project2.jpg',
         description: 'An interactive dashboard for visualizing complex datasets.',
         content: `...`, // Full content here
         github: 'https://github.com/yourusername/data-viz-dashboard'
     },
     {
         id: 'project3',
-        title: 'Natural Language Processing Tool',
+        title: 'Smartphone price prediction',
         date: 'July 30, 2023',
-        image: 'assets/images/project3.jpg',
         description: 'A tool for analyzing and processing natural language text.',
         content: `...`, // Full content here
         github: 'https://github.com/yourusername/nlp-tool'
@@ -113,11 +110,14 @@ function loadProjects(containerId) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
+    const isProjectPage = window.location.pathname.includes('/projects/');
+
     projects.forEach(project => {
-        const projectElement = document.createElement('div');
+        const projectElement = document.createElement('a');
         projectElement.className = 'project-card';
+        projectElement.href = isProjectPage ? `${project.id}.html` : `projects/${project.id}.html`;
         projectElement.innerHTML = `
-            <img src="${project.image}" alt="${project.title}" class="project-image">
+            <img src="${isProjectPage ? '../' : ''}assets/images/project-images/${project.id}.png" alt="${project.title}" class="project-image">
             <div class="project-info">
                 <h3>${project.title}</h3>
             </div>
