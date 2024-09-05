@@ -105,22 +105,25 @@ function populateRecentBlogPosts() {
 
 // Function to populate all projects on the projects page
 function populateAllProjects() {
-    const projectGrid = getElement('project-grid');
-    if (projectGrid) {
-        projects.forEach(project => {
-            const projectCard = document.createElement('a');
-            projectCard.className = 'project-card';
-            projectCard.href = `${project.id}.html`;
-            projectCard.innerHTML = `
-                <img src="../${project.image}" alt="${project.title}">
-                <div class="project-info">
-                    <h3>${project.title}</h3>
-                    <p class="project-date">${project.date}</p>
-                </div>
-            `;
-            projectGrid.appendChild(projectCard);
-        });
-    }
+    loadProjects('project-grid');
+}
+
+// Function to load projects into a container
+function loadProjects(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    projects.forEach(project => {
+        const projectElement = document.createElement('div');
+        projectElement.className = 'project-card';
+        projectElement.innerHTML = `
+            <img src="${project.image}" alt="${project.title}" class="project-image">
+            <div class="project-info">
+                <h3>${project.title}</h3>
+            </div>
+        `;
+        container.appendChild(projectElement);
+    });
 }
 
 // Function to populate project details
@@ -212,7 +215,6 @@ function initPage() {
         } else {
             console.log("Initializing home page");
             populateFeaturedProjects();
-            // Removed populateLatestPost() from here
             populateRecentBlogPosts();
         }
     } else if (path.includes('/projects/')) {
@@ -221,6 +223,9 @@ function initPage() {
     } else if (path.includes('/blog/')) {
         console.log("Initializing blog post page");
         populateBlogPost();
+    } else if (path.includes('about.html')) {
+        console.log("Initializing about page");
+        populateAllProjects();
     }
 }
 

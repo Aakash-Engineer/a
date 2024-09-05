@@ -8,6 +8,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <script src="../assets/js/main.js" defer></script>
     <script src="../assets/js/blog_loader.js" defer></script>
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <style>
+        link[rel="icon"] {
+            mask-image: url('../circular-mask.svg');
+            -webkit-mask-image: url('../circular-mask.svg');
+            mask-size: contain;
+            -webkit-mask-size: contain;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -33,7 +42,7 @@
                     <p class="post-author">By Aakash</p>
                 </div>
                 <div class="post-image-container">
-                    <img id="post-image" src="" alt="" class="post-image">
+                    <img id="post-image" src="../images/blog-images/post1-image.jpg" alt="Blog Post 1 Image" class="post-image">
                 </div>
                 <div id="post-content" class="post-content">
                     <p>Loading blog post content...</p>
